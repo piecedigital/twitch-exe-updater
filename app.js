@@ -13,6 +13,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 var appVersion = "0.6.0";
 
+app.get("/", function(req, res) {
+  res.send("<a href='http://piecedigital.github.io/twitch-exe'>Get Twitch Exe!</a>")
+});
+
 app.post("/check-update", function(req, res) {
   console.log(req.body)
   var operations = {
