@@ -23,7 +23,7 @@
     <script src="main.js"></script>
     <script id="check-update">
       ajax({
-        url: "http://twitch-exe-updater/check-update",
+        url: "http://twitch-exe-updater.herokuapp.com/check-update",
         type: "POST",
         data: JSON.stringify({ appVersion : appVersion }),
         success: function(data) {
@@ -47,7 +47,7 @@
                 document.querySelector("body").css("overflow", "hidden");
                 document.querySelector("#update-logger").innerHTML += `<li class="li-${index}">Updating ${file}...<span></span></li>`;
                 ajax({
-                  url: "http://twitch-exe-updater/get-file",
+                  url: "http://twitch-exe-updater.herokuapp.com/get-file",
                   type: "post",
                   data: JSON.stringify({ filePath : file }),
                   success: function(data2) {
