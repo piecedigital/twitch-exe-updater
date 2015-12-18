@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 12.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 51448)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_svg "http://www.w3.org/2000/svg">
+	<!ENTITY ns_xlink "http://www.w3.org/1999/xlink">
+]>
+<svg  version="1.1" xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" width="433.728" height="443.275" viewBox="0 0 733.728 443.275"
+	 overflow="visible" enable-background="new 0 0 733.728 443.275" xml:space="preserve">
+<g id="Layer_4">
+</g>
+<g id="Layer_1_copy">
+	<polygon id="wing-blue-anim" fill="#00A2EB" points="734.856,297.912 587.209,356.593 145.355,356.593 -0.717,297.912 -0.717,141.288 145.721,82.606 
+		587.574,82.606 734.856,141.288 	"/>
+	<polygon id="back-blue-anim" fill="#00A2EB" points="613.726,93.855 613.726,344.939 515.555,445.192 218.32,445.192 119.539,345.344 119.539,93.855 
+		218.32,-0.157 515.819,-0.157 	"/>
+	<polygon id="wing-white-anim" fill="#FFFFFF" points="550.466,86.758 687.616,219.528 550.466,352.273 498.318,405.614 236.795,405.614 184.961,352.273 
+		47.812,219.528 184.961,86.758 236.796,36.608 498.318,36.608 	"/>
+	<polygon id="back-white-anim" fill="#FFFFFF" points="695.095,273.572 587.209,317.002 515.819,345.344 367.07,345.344 218.32,345.344 145.355,317.002 
+		39.045,273.572 39.045,166.631 145.721,123.198 218.352,93.887 367.07,93.855 515.819,93.855 587.574,123.198 695.095,166.631 	"/>
+	<!-- eyes -->
+	<rect x="259.539" y="147.518" fill="#00A2EB" width="54.651" height="151.164"/>
+	<rect x="419.539" y="147.518" fill="#00A2EB" width="54.651" height="151.164"/>
+	<!-- end eyes -->
+	
+	<animateTransform
+		xlink:href="#wing-blue-anim"
+		attributeName="transform"
+    attributeType="XML"
+    type="rotate"
+    from="0 366.8595 221.633"
+    to="360 366.8595 221.633"
+    dur="1s"
+    repeatCount="indefinite"/>
+  <animateTransform
+		xlink:href="#back-blue-anim"
+		attributeName="transform"
+    attributeType="XML"
+    type="rotate"
+    from="0 366.8595 221.633"
+    to="360 366.8595 221.633"
+    dur="1s"
+    repeatCount="indefinite"
+    />
+  <animateTransform
+		xlink:href="#wing-white-anim"
+		attributeName="transform"
+    attributeType="XML"
+    type="rotate"
+    from="0 366.8595 221.633"
+    to="360 366.8595 221.633"
+    dur="1s"
+    repeatCount="indefinite"/>
+  <animateTransform
+		xlink:href="#back-white-anim"
+		attributeName="transform"
+    attributeType="XML"
+    type="rotate"
+    from="0 366.8595 221.633"
+    to="360 366.8595 221.633"
+    dur="1s"
+    repeatCount="indefinite"
+    />
+</g>
+</svg>
+
+<!-- width="733.728" height="443.275" -->

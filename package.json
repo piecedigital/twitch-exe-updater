@@ -1,0 +1,22 @@
+{
+  "name": "twitch-exe-updater",
+  "version": "0.0.0",
+  "description": "twitch exe updator",
+  "keywords": [],
+  "main": "app.js",
+  "engines": {
+    "node": "^4.x.x"
+  },
+  "dependencies": {
+    "body-parser": "^1.13.1",
+    "express": "^4.13.3"
+  },
+  "author": {
+    "name": "Darryl Dixon",
+    "email": "piecedigitalstudios@gmail.com",
+    "url": "http://piecedigital.github.io"
+  },
+  "devDependencies": {
+    "morgan": "^1.6.1"
+  }
+}
