@@ -1,4 +1,4 @@
-var appVersion = "0.6.0";
+var appVersion = "0.6.1";
 
 window.$ = module.exports;
 window.jQuery = module.exports;
@@ -17,16 +17,16 @@ var ajax = function(optionsObj) {
 
   var httpRequest = new XMLHttpRequest();
   httpRequest.onreadystatechange = function(data) {
-  	if(httpRequest.readyState === 4) {
-  		if(httpRequest.status < 400) {
+    if(httpRequest.readyState === 4) {
+      if(httpRequest.status < 400) {
         optionsObj.success(data.target.response);
-  		} else {
+      } else {
         optionsObj.error({
           "status": data.target.status,
           "message": data.target.statusText
         });
       }
-  	}
+    }
   }
   contentTypes = {
     json: "application/json",
@@ -43,15 +43,67 @@ Array.prototype.include = function(data) {
   return this.indexOf(data) >= 0;
 };
 
+Object.prototype.push = function(value) {
+  var keys = Object.keys(this);
+  this[keys.length-1] = value;
+  this.length = keys.length;
+
+  keys = undefined;
+  return this;
+};
+
+Object.prototype.include = function(value) {
+  var keys = Object.keys(this);
+  for(var key in keys) {
+    if(this[key] === value) {
+      return true;
+    }
+  }
+
+  keys = undefined;
+  return false;
+};
+
+Object.prototype.resortObject = function() {
+  var keys = Object.keys(this), values = [];
+
+  for(var i = 0; i < keys.length; i++) {
+    if(keys[i] !== "length") {
+      values[i] = this[keys[i]];
+      delete this[keys[i]];
+      this[i] = values[i];
+    }
+  }
+  return this;
+};
+
+Object.prototype.splice = function(startValue, endValue) {
+  endValue = endValue + startValue;
+  for(var i = startValue; i < endValue; i++) {
+    delete this[i];
+  }
+  var keys = Object.keys(this);
+  this.length = keys.length-1;
+  this.resortObject();
+
+  keys = undefined;
+  return this;
+};
+
 Object.prototype.map = function(callback) {
   try {
     var arr = [];
     var keys = Object.keys(this);
 
     for(var i = 0; i < keys.length; i++) {
-      var returnData = callback(this[keys[i]], keys[i], this);
-      if(returnData) { arr.push(returnData) };
-      returnData = null;
+      if(keys[i] !== "length") {
+        if(keys[i].match(/^[0-9]*$/)) {
+          keys[i] = parseInt(keys[i]);
+        }
+        var returnData = callback(this[keys[i]], keys[i], this);
+        if(returnData) { arr.push(returnData) };
+        returnData = null;
+      }
     }
     return arr;
   }

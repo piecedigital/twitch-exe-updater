@@ -199,7 +199,7 @@ var ViewParent = R.CC({
 
       viewer.removeClass("open");
       document.body.style.overflow = "";
-      this.setState({ "streamers" : [] })
+      this.setState({ "streamers" : { length : 0 } })
     } else
     // event for changing the display of the viewer
     if(e.target.hasClass("display")) {
@@ -253,7 +253,7 @@ var ViewParent = R.CC({
     // default event for opening streams
     {
       var streamer = e.target.attributes["data-stream-link"].value;
-      this.state.streamers = [streamer];
+      this.state.streamers = { 0 : streamer, length : 1 };
       this.setState({ "streamerInView" : 0 });
       var viewer = document.querySelector("#stream-viewer");
 
@@ -449,6 +449,7 @@ var ViewParent = R.CC({
             `Unfollow ${this.state.streamers[this.state.streamerInView]}`
           ),
           this.state.streamers.map(function(streamer, ind) {
+            //ind = parseInt(ind);
             return R.CE(
               "div",
               { "className" : "ctrl toggle-chat", "data-chat" : ind, "onClick" : elemInstance.toggleChat, "title" : `${streamer}`, "key" : `toggle${ind}` },
@@ -463,9 +464,10 @@ var ViewParent = R.CC({
             "div",
             { "className" : `video-embed embedded-${this.state.streamers.length}` },
             this.state.streamers.map(function(streamer, ind) {
+              //ind = parseInt(ind);
               return R.CE(
                 "div",
-                { "className" : `video embed-size-${elemInstance.state.streamers.length}${(ind === elemInstance.state.streamerInView) ? " in-view" : " out-view"}`, "key" : `video${ind}` },
+                { "className" : `video embed-size-${elemInstance.state.streamers.length}${(ind === elemInstance.state.streamerInView) ? " in-view" : " out-view"}`, "key" : `${streamer}` },
                 R.CE(
                   "iframe",
                   { "src" : `http://player.twitch.tv/?channel=${streamer}`, "frameBorder" : "0" }
@@ -535,9 +537,10 @@ var ViewParent = R.CC({
             )
           ),
           this.state.streamers.map(function(streamer, ind) {
+            //ind = parseInt(ind);
             return R.CE(
               "div",
-              { "className" : `chat-embed${(ind === elemInstance.state.streamerInView) ? "" : " hide"}`, "key" : `chat-embed${ind}` },
+              { "className" : `chat-embed${(ind === elemInstance.state.streamerInView) ? "" : " hide"}`, "key" : `${streamer}` },
               R.CE(
                 "div",
                 { "className" : `chat-${ind}` },
@@ -1174,7 +1177,7 @@ var StreamsPage = R.CC({
   render: function render() {
     var elemInstance = this;
     var historyPoint = accessView.state.history[accessView.state.history.length-1];
-    console.log(historyPoint)
+    //console.log(historyPoint)
     //console.log(accessView.state.streamSearchResults);
     //console.log(accessView.state.channelSearchResults);
 

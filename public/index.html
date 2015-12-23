@@ -76,11 +76,7 @@
           }
         },
         error: function(err) {
-          console.error(err);
-          if(data.status === "UTD") {
-            document.querySelector("#update-logger").remove();
-            document.querySelector("#check-update").remove();
-          }
+          console.error(err)
         }
       });
     </script>
@@ -144,18 +140,20 @@
       var newUserData = JSON.parse(data);
 
       var setViewerTutTrue = function() {
+        newUserData.wentThroughTut = newUserData.wentThroughTut || {};
         newUserData.wentThroughTut.viewer = true;
 
         remote.require("./handle-data").saveConcurrentData(newUserData);
       }
       var setOptionsTutTrue = function() {
+        newUserData.wentThroughTut = newUserData.wentThroughTut || {};
         newUserData.wentThroughTut.options = true;
 
         remote.require("./handle-data").saveConcurrentData(newUserData);
       }
 
       if(typeof newUserData === "object") {
-        if(!newUserData.wentThroughTut.viewer) {
+        if(!newUserData.wentThroughTut || (newUserData.wentThroughTut && !newUserData.wentThroughTut.viewer)) {
           var openTut = function() {
             tutoPop(viewerTutorial, ["#6441a5", "white"], null, setViewerTutTrue, setViewerTutTrue).timeline({
               highlight: true,
@@ -171,7 +169,7 @@
           });
 
         }
-        if(!newUserData.wentThroughTut.options) {
+        if(!newUserData.wentThroughTut || (newUserData.wentThroughTut && !newUserData.wentThroughTut.options)) {
           tutoPop(optionsTutorial, ["#6441a5", "white"], null, setOptionsTutTrue, setOptionsTutTrue).timeline({
             highlight: true,
             opacity: .5,
