@@ -445,25 +445,33 @@ body {
           text-align: right; }
           #stream-viewer #embed-area .video-embed .video .video-options .option {
             display: inline-block;
-            width: 24px;
+            min-width: 24px;
             height: 24px;
+            padding: 4px;
+            color: white;
             background-color: #00a2eb;
-            cursor: pointer;
             box-shadow: inset 0 0 0 1.6px black;
-            vertical-align: top;
-            text-align: center; }
+            text-align: center;
+            cursor: pointer;
+            vertical-align: top; }
             #stream-viewer #embed-area .video-embed .video .video-options .option:after {
               position: relative;
-              top: 3.2px;
               left: 0;
               color: white; }
             #stream-viewer #embed-area .video-embed .video .video-options .option:hover {
               background-color: #17B4FB; }
-            #stream-viewer #embed-area .video-embed .video .video-options .option.full-screenify:after {
-              content: "\2927"; }
             #stream-viewer #embed-area .video-embed .video .video-options .option.info:after {
               content: "i";
+              top: 0.8px;
               font-weight: bold; }
+            #stream-viewer #embed-area .video-embed .video .video-options .option.full-screenify:after {
+              top: -0.8px;
+              content: "\2927"; }
+            #stream-viewer #embed-area .video-embed .video .video-options .option.close:after {
+              content: "\2795";
+              display: block;
+              top: -3.2px;
+              transform: rotate(45deg); }
         #stream-viewer #embed-area .video-embed .video:hover .video-options {
           opacity: 1;
           pointer-events: auto; }

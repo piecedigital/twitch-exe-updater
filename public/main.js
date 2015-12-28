@@ -1,4 +1,4 @@
-var appVersion = "0.6.1";
+var appVersion = "0.6.2";
 
 window.$ = module.exports;
 window.jQuery = module.exports;
@@ -227,8 +227,12 @@ HTMLElement.prototype.css = function(property, value) {
 HTMLElement.prototype.parent = function(property, value) {
   if(this) {
     //console.log("RETURN PARENT");
-
-    return (this.parentNode) ? this.parentNode : this.target.parentNode;
+    try {
+      return this.parentNode;
+    }
+    catch(e) {
+      console.error(e);
+    }
   }
 };
 HTMLElement.prototype.remove = function() {

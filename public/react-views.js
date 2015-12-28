@@ -372,14 +372,8 @@ var ViewParent = R.CC({
           });
         } else
         if(e.target.hasClass("toggle-chat")) {
-          if(elemInstance.state.streamers.length > 1) {
-            elemInstance.state.streamers.splice( parseInt(e.target.attributes["data-chat"].value), 1 );
-            if(parseInt(e.target.attributes["data-chat"].value) > elemInstance.state.streamers.length-1) {
-              elemInstance.state.streamerInView = elemInstance.state.streamers.length-1;
-            }
-            document.querySelector("#context-menu.streamer-options").addClass("hide");
-            elemInstance.setState({});
-          }
+          //elemInstance.closeVideo(e);
+          console.log("\r\nSure, right clicks are still recognized, but we're testing soemthing else here.\r\n");
         } else {
           document.querySelector("#context-menu.streamer-options").addClass("hide");
         }
@@ -411,6 +405,23 @@ var ViewParent = R.CC({
         }, 1000);
       }, 3000);
     }, 0);
+  },
+  reloadVideo: function(e) {
+    // reloads the video player
+    var target = e.target.parent().parent().querySelector("iframe");
+    var originalSource = target.src;
+    // ... by reassigning its own "src"
+    target.src = originalSource;
+  },
+  closeVideo: function(e) {
+    if(this.state.streamers.length > 1) {
+      this.state.streamers.splice( parseInt(e.target.attributes["data-chat"].value), 1 );
+      if(parseInt(e.target.attributes["data-chat"].value) > this.state.streamers.length-1) {
+        this.state.streamerInView = this.state.streamers.length-1;
+      }
+      document.querySelector("#context-menu.streamer-options").addClass("hide");
+      this.setState({});
+    }
   },
   render: function render() {
     var elemInstance = this;
@@ -482,7 +493,16 @@ var ViewParent = R.CC({
                   R.CE(
                     "div",
                     { "className" : "option full-screenify", "title" : "fullscreen", "onClick" : elemInstance.fullScreenify }
-                  )
+                  ),
+                  R.CE(
+                    "div",
+                    { "className" : "option reload", "title" : "reload", "data-chat" : ind, "onClick" : elemInstance.reloadVideo },
+                    "RELOAD"
+                  ),
+                  (elemInstance.state.streamers.length > 1) ? R.CE(
+                    "div",
+                    { "className" : "option close", "title" : "close", "data-chat" : ind, "onClick" : elemInstance.closeVideo }
+                  ) : null
                 )
               )
             }),
