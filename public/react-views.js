@@ -102,6 +102,7 @@ var ViewParent = R.CC({
   },
   // ajax for streams data and update the requestResults in the state
   searchForStreamData: function(offset) {
+    console.log("running")
     // sets variable to access the class object
     var elemInstance = this;
     var historyPoint = this.state.history[this.state.history.length-1];
@@ -111,7 +112,7 @@ var ViewParent = R.CC({
     ajax({
       url: url,
       success: function(data) {
-        //console.log("Streams", (JSON.parse(data)));
+        console.log("Streams", (JSON.parse(data)));
         JSON.parse(data).streams.map(function(streamData) {
           elemInstance.state.streamSearchResults.push(streamData);
         });
@@ -165,16 +166,16 @@ var ViewParent = R.CC({
   },
   // search function for feeding data to "searchForStreamData" and "searchForTopGame"
   pingForData: function(e) {
-    //console.log(this.state)
     var historyPoint = this.state.history[this.state.history.length-1];
     var searchText = (e) ? ( (e.target.attributes["data-search"]) ? e.target.attributes["data-search"].value : historyPoint.search ) : historyPoint.search;
     //console.log(searchText)
     var searchPage = (e) ? e.target.attributes["data-page-link"].value : historyPoint.page;
 
-    if(historyPoint !== searchPage) {
+    if(historyPoint.page !== searchPage) {
       this.state.history.push({ page : searchPage, search : searchText });
     }
-    historyPoint.search = searchText || historyPoint.search;
+    historyPoint.search = searchText;
+    historyPoint.page = searchPage;
     this.state.streamSearchResults = [];
     this.state.channelSearchResults = [];
     this.state.streamOffset = 0;
@@ -182,12 +183,15 @@ var ViewParent = R.CC({
     this.state.gameOffset = 0;
 
     if(historyPoint.page === "StreamsListPage") {
+      console.log(true)
       this.searchForStreamData();
       this.searchForChannelData();
-    }
+    } else
     if(historyPoint.page === "GamesListPage") {
+      console.log(false)
       this.searchForTopGame();
     } else {
+      console.log(null)
       this.setState({});
     }
   },
@@ -1197,9 +1201,9 @@ var StreamsPage = R.CC({
   render: function render() {
     var elemInstance = this;
     var historyPoint = accessView.state.history[accessView.state.history.length-1];
-    //console.log(historyPoint)
-    //console.log(accessView.state.streamSearchResults);
-    //console.log(accessView.state.channelSearchResults);
+    // console.log(historyPoint)
+    // console.log(accessView.state.streamSearchResults);
+    // console.log(accessView.state.channelSearchResults);
 
     return pageWrapNormal(
       null,

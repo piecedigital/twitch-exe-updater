@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Twitch Exe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="main.css">
   </head>
   <body>
@@ -86,100 +87,100 @@
     <script src="react-views.js"></script>
     <script src="tutopop.js"></script>
     <script>
-    var optionsTutorial = [
-      {
-        dialogX: document.querySelector("#options-bar").offsetLeft + 50,
-        dialogY: document.querySelector("#options-bar").offsetTop + 110,
-        highlightX: document.querySelector("#options-bar").offsetLeft + 130,
-        highlightY: document.querySelector("#options-bar").offsetTop,
-        highlightRadius: 5,
-        highlightWidth: document.querySelector("#options-bar").offsetWidth,
-        highlightHeight: document.querySelector("#options-bar").offsetHeight,
-        msg: "In this options bar you can go back to the previous page, search for streams, and login/out!",
-        side: "top"
-      },
-      {
-        dialogX: document.querySelector("#options-bar").offsetLeft + 50,
-        dialogY: document.querySelector("#options-bar").offsetTop + 130,
-        highlightX: document.querySelector("#options-bar").offsetLeft + 130,
-        highlightY: document.querySelector("#options-bar").offsetTop,
-        highlightRadius: 5,
-        highlightWidth: document.querySelector("#options-bar").offsetWidth,
-        highlightHeight: document.querySelector("#options-bar").offsetHeight,
-        msg: "The search bar supports multitwitch links, and a pseudo multistream URL (eg, http://multitwitch.tv/riotgames/ohnips/snowlit/suppycolleen, ms://riotgames/ohnips/snowlit/suppycolleen)",
-        side: "top",
-        maxWidth: 20*16
-      }
-    ];
-    var viewerTutorial = [
-      {
-        dialogX: document.querySelector("#viewer-controls").offsetLeft,
-        dialogY: document.querySelector("#viewer-controls").offsetTop + 110,
-        highlightX: document.querySelector("#viewer-controls").offsetLeft + 130,
-        highlightY: document.querySelector("#viewer-controls").offsetTop,
-        highlightRadius: 5,
-        highlightWidth: document.querySelector("#viewer-controls").offsetWidth + 180,
-        highlightHeight: document.querySelector("#viewer-controls").offsetHeight,
-        msg: "In this viewer you have the options to close all stream, shrink the view, and hide the chat!",
-        side: "top"
-      },
-      {
-        dialogX: document.querySelector("#viewer-controls").offsetLeft + 200,
-        dialogY: document.querySelector("#viewer-controls").offsetTop + 110,
-        highlightX: document.querySelector("#viewer-controls").offsetLeft + 180,
-        highlightY: document.querySelector("#viewer-controls").offsetTop,
-        highlightRadius: 5,
-        highlightWidth: document.querySelector("#viewer-controls").offsetWidth + 180,
-        highlightHeight: document.querySelector("#viewer-controls").offsetHeight,
-        msg: "You also have the option to follow/unfollow the currently in-view stream, and you can tab to the available chat windows!",
-        side: "top"
-      }
-    ];
-    
-    remote.require("./handle-data").loadConcurrentData(function(data) {
-      var newUserData = JSON.parse(data);
+      var optionsTutorial = [
+        {
+          dialogX: document.querySelector("#options-bar").offsetLeft + 50,
+          dialogY: document.querySelector("#options-bar").offsetTop + 110,
+          highlightX: document.querySelector("#options-bar").offsetLeft + 130,
+          highlightY: document.querySelector("#options-bar").offsetTop,
+          highlightRadius: 5,
+          highlightWidth: document.querySelector("#options-bar").offsetWidth,
+          highlightHeight: document.querySelector("#options-bar").offsetHeight,
+          msg: "In this options bar you can go back to the previous page, search for streams, and login/out!",
+          side: "top"
+        },
+        {
+          dialogX: document.querySelector("#options-bar").offsetLeft + 50,
+          dialogY: document.querySelector("#options-bar").offsetTop + 130,
+          highlightX: document.querySelector("#options-bar").offsetLeft + 130,
+          highlightY: document.querySelector("#options-bar").offsetTop,
+          highlightRadius: 5,
+          highlightWidth: document.querySelector("#options-bar").offsetWidth,
+          highlightHeight: document.querySelector("#options-bar").offsetHeight,
+          msg: "The search bar supports multitwitch links, and a pseudo multistream URL (eg, http://multitwitch.tv/riotgames/ohnips/snowlit/suppycolleen, ms://riotgames/ohnips/snowlit/suppycolleen)",
+          side: "top",
+          maxWidth: 20*16
+        }
+      ];
+      var viewerTutorial = [
+        {
+          dialogX: document.querySelector("#viewer-controls").offsetLeft,
+          dialogY: document.querySelector("#viewer-controls").offsetTop + 110,
+          highlightX: document.querySelector("#viewer-controls").offsetLeft + 130,
+          highlightY: document.querySelector("#viewer-controls").offsetTop,
+          highlightRadius: 5,
+          highlightWidth: document.querySelector("#viewer-controls").offsetWidth + 180,
+          highlightHeight: document.querySelector("#viewer-controls").offsetHeight,
+          msg: "In this viewer you have the options to close all stream, shrink the view, and hide the chat!",
+          side: "top"
+        },
+        {
+          dialogX: document.querySelector("#viewer-controls").offsetLeft + 200,
+          dialogY: document.querySelector("#viewer-controls").offsetTop + 110,
+          highlightX: document.querySelector("#viewer-controls").offsetLeft + 180,
+          highlightY: document.querySelector("#viewer-controls").offsetTop,
+          highlightRadius: 5,
+          highlightWidth: document.querySelector("#viewer-controls").offsetWidth + 180,
+          highlightHeight: document.querySelector("#viewer-controls").offsetHeight,
+          msg: "You also have the option to follow/unfollow the currently in-view stream, and you can tab to the available chat windows!",
+          side: "top"
+        }
+      ];
+      
+      remote.require("./handle-data").loadConcurrentData(function(data) {
+        var newUserData = JSON.parse(data);
 
-      var setViewerTutTrue = function() {
-        newUserData.wentThroughTut = newUserData.wentThroughTut || {};
-        newUserData.wentThroughTut.viewer = true;
+        var setViewerTutTrue = function() {
+          newUserData.wentThroughTut = newUserData.wentThroughTut || {};
+          newUserData.wentThroughTut.viewer = true;
 
-        remote.require("./handle-data").saveConcurrentData(newUserData);
-      }
-      var setOptionsTutTrue = function() {
-        newUserData.wentThroughTut = newUserData.wentThroughTut || {};
-        newUserData.wentThroughTut.options = true;
+          remote.require("./handle-data").saveConcurrentData(newUserData);
+        }
+        var setOptionsTutTrue = function() {
+          newUserData.wentThroughTut = newUserData.wentThroughTut || {};
+          newUserData.wentThroughTut.options = true;
 
-        remote.require("./handle-data").saveConcurrentData(newUserData);
-      }
+          remote.require("./handle-data").saveConcurrentData(newUserData);
+        }
 
-      if(typeof newUserData === "object") {
-        if(!newUserData.wentThroughTut || (newUserData.wentThroughTut && !newUserData.wentThroughTut.viewer)) {
-          var openTut = function() {
-            tutoPop(viewerTutorial, ["#6441a5", "white"], null, setViewerTutTrue, setViewerTutTrue).timeline({
+        if(typeof newUserData === "object") {
+          if(!newUserData.wentThroughTut || (newUserData.wentThroughTut && !newUserData.wentThroughTut.viewer)) {
+            var openTut = function() {
+              tutoPop(viewerTutorial, ["#6441a5", "white"], null, setViewerTutTrue, setViewerTutTrue).timeline({
+                highlight: true,
+                opacity: .5,
+                color: "black"
+              });
+
+            }
+            document.addEventListener("click", function(e) {
+              if(e.target.hasClass(["following-stream-item", "featured-stream-item","stream-link"])) {
+                openTut()
+              }
+            });
+
+          }
+          if(!newUserData.wentThroughTut || (newUserData.wentThroughTut && !newUserData.wentThroughTut.options)) {
+            tutoPop(optionsTutorial, ["#6441a5", "white"], null, setOptionsTutTrue, setOptionsTutTrue).timeline({
               highlight: true,
               opacity: .5,
               color: "black"
             });
-
           }
-          document.addEventListener("click", function(e) {
-            if(e.target.hasClass(["following-stream-item", "featured-stream-item","stream-link"])) {
-              openTut()
-            }
-          });
-
+        } else {
+          console.log(newUserData)
         }
-        if(!newUserData.wentThroughTut || (newUserData.wentThroughTut && !newUserData.wentThroughTut.options)) {
-          tutoPop(optionsTutorial, ["#6441a5", "white"], null, setOptionsTutTrue, setOptionsTutTrue).timeline({
-            highlight: true,
-            opacity: .5,
-            color: "black"
-          });
-        }
-      } else {
-        console.log(newUserData)
-      }
-    });
+      });
     </script>
   </body>
 </html>
