@@ -485,7 +485,7 @@ var ViewParent = R.CC({
                 { "className" : `video embed-size-${elemInstance.state.streamers.length}${(ind === elemInstance.state.streamerInView) ? " in-view" : " out-view"}`, "key" : `${streamer}` },
                 R.CE(
                   "iframe",
-                  { "src" : `http://player.twitch.tv/?channel=${streamer}`, "scrollable" : "no", "frameBorder" : "0" }
+                  { "src" : `http://player.twitch.tv/?channel=${streamer}`, "scrolling" : "no", "frameBorder" : "0" }
                 ),
                 R.CE(
                   "div",
@@ -574,7 +574,7 @@ var ViewParent = R.CC({
                 ),
                 R.CE(
                   "iframe",
-                  { "src" : `http://twitch.tv/${streamer}/chat`, "scrollable" : "no", "frameBorder" : "0" }
+                  { "src" : `http://twitch.tv/${streamer}/chat`, "scrolling" : "no", "frameBorder" : "0" }
                 )
               )
             )
@@ -898,7 +898,7 @@ var TopStreams = R.CC({
           { "className" : "top-streams-viewer" },
           R.CE(
             "iframe",
-            { "className" : "video", "scrollable" : "no", "scrollable" : "no", "src" : `http://player.twitch.tv?channel=${this.state.streams.featured[this.state.index].stream.channel.name}`, "width" : "100%", "height" : "100%", "frameBorder" : "0" }
+            { "className" : "video", "scrolling" : "no", "src" : `http://player.twitch.tv?channel=${this.state.streams.featured[this.state.index].stream.channel.name}`, "width" : "100%", "height" : "100%", "frameBorder" : "0" }
           )
         ),
         R.CE(
