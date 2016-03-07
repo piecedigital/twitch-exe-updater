@@ -83,6 +83,7 @@ var ViewParent = R.CC({
       this.state.history.pop();
       var historyPoint = this.state.history[this.state.history.length-1];
 
+    console.log(this.state.history)
       this.state.streamSearchResults = [];
       this.state.channelSearchResults = [];
       this.state.streamOffset = 0;
@@ -102,7 +103,6 @@ var ViewParent = R.CC({
   },
   // ajax for streams data and update the requestResults in the state
   searchForStreamData: function(offset) {
-    console.log("running")
     // sets variable to access the class object
     var elemInstance = this;
     var historyPoint = this.state.history[this.state.history.length-1];
@@ -174,24 +174,24 @@ var ViewParent = R.CC({
     if(historyPoint.page !== searchPage) {
       this.state.history.push({ page : searchPage, search : searchText });
     }
-    historyPoint.search = searchText;
-    historyPoint.page = searchPage;
+
+    var newHistoryPoint = this.state.history[this.state.history.length-1];
+
+    newHistoryPoint.search = searchText;
+    newHistoryPoint.page = searchPage;
     this.state.streamSearchResults = [];
     this.state.channelSearchResults = [];
     this.state.streamOffset = 0;
     this.state.channelOffset = 0;
     this.state.gameOffset = 0;
 
-    if(historyPoint.page === "StreamsListPage") {
-      console.log(true)
+    if(newHistoryPoint.page === "StreamsListPage") {
       this.searchForStreamData();
       this.searchForChannelData();
     } else
-    if(historyPoint.page === "GamesListPage") {
-      console.log(false)
+    if(newHistoryPoint.page === "GamesListPage") {
       this.searchForTopGame();
     } else {
-      console.log(null)
       this.setState({});
     }
   },
